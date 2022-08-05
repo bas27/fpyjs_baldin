@@ -11,9 +11,7 @@ for (let i = 0, len = links.length; i < len; i++) {
 
     if (nextSibling) {
       e.preventDefault();
-      nextSibling.className.includes("menu_active")
-        ? nextSibling.classList.remove("menu_active")
-        : nextSibling.classList.add("menu_active");
+      nextSibling.classList.add("menu_active");
     }
   });
 }
