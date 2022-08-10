@@ -1,57 +1,40 @@
-const prev = document.querySelector('.slider__arrow_prev')
-const next = document.querySelector('.slider__arrow_next')
+const prev = document.querySelector(".slider__arrow_prev");
+const next = document.querySelector(".slider__arrow_next");
+const divSliders = document.querySelectorAll("div.slider__item");
 
+prev.addEventListener("click", preShowSlide);
+next.addEventListener("click", nextShowSlide);
 
-let slideIndex = 1;
+function nextShowSlide() {
+  let active = document.querySelector(".slider__item_active");
+  let index = getIndex(divSliders);
 
-showImg(slideIndex)
+  let len = divSliders.length;
+  active == divSliders[len - 1] ? (index = 0) : index++;
 
-prev.addEventListener('click', prevClick)
-next.addEventListener('click', nextClick)
+  let nextSlide = divSliders[index];
 
-
-function prevClick() {
-    showImg(slideIndex--)
+  active.classList.remove("slider__item_active");
+  nextSlide.classList.add("slider__item_active");
 }
 
-function nextClick() {
-    showImg(slideIndex++)
+function preShowSlide() {
+  let active = document.querySelector(".slider__item_active");
+  let index = getIndex(divSliders);
+
+  let len = divSliders.length;
+  active == divSliders[0] ? (index = len - 1) : index--;
+
+  let nextSlide = divSliders[index];
+
+  active.classList.remove("slider__item_active");
+  nextSlide.classList.add("slider__item_active");
 }
 
-function realImg(i) {
-    showImg(slideIndex = i)
-}
-
-function showImg(i) {
-    const divSliders = document.querySelectorAll('div.slider__item')
-    const active = document.querySelector('.slider__item_active')
-    let len = divSliders.length
-    if (i > len) {
-        slideIndex = 1;
+function getIndex(coll) {
+  for (let k = 0, len = coll.length; k < len; k++) {
+    if (coll[k].className.includes("slider__item_active")) {
+      return k;
     }
-    
-    if (i < 1) {
-        slideIndex = len
-    }
-
-    let slide = divSliders[slideIndex]
-    active.classList.remove('slider__item_active')
-    slide.classList.add('slider__item_active')
-    console.log(slideIndex)
-    
+  }
 }
-
-// Array.from(ar, x => {
-
-//     }
-// let ar = toArray(divSliders)
-// function toArray(coll) {
-//     let  a = [];
-//     for (let i = 0, len = coll.length; i < len; i++) {
-//         a[i] = coll[i];
-//     }
-//     return a;
-// }
-
-// let ar = toArray(divSliders)
-// console.log(ar)
