@@ -4,7 +4,6 @@ const ar_tabs = toArray(tabs);
 
 for (let tab of ar_tabs) {
   tab.addEventListener("click", (e) => {
-    console.log(e.target.classList);
     if (!e.target.className.includes("tab_active")) {
       let i = ar_tabs.indexOf(tab);
 
