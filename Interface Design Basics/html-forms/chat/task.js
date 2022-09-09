@@ -25,10 +25,14 @@ function getAnswer() {
     return answers[index];
 }
 
+// function scroll() {
+//     document.getElementById('chat-widget__messages').scrollTop = 
+//     document.getElementById('chat-widget__messages').scrollHeight;
+//     };
+
 function scroll() {
-    document.getElementById('chat-widget__messages').scrollTop = 
-    document.getElementById('chat-widget__messages').scrollHeight;
-    };
+    chat.scrollIntoView({block: "end"})
+}
 
 function message() {
     
@@ -53,12 +57,12 @@ function robot() {
 }
 
 
-
-
 msg.addEventListener('keypress', (e) => {
     if (e.key == 'Enter' && msg.value != '') {
         message();
         msg.value = "";
         robot()
+        scroll()
+
     }
 })
